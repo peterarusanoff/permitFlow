@@ -17,11 +17,7 @@
         "ecmaVersion": 2020, // Allows for the parsing of modern ECMAScript features
         "sourceType": "module" // Allows for the use of imports
     },
-    "plugins": [
-        "@typescript-eslint",
-        "prettier",
-        "import"
-    ],
+    "plugins": ["@typescript-eslint", "prettier", "import"],
     "rules": {
         "prettier/prettier": "error",
         "import/extensions": "off",
