@@ -1,4 +1,4 @@
-import { Timeline, Text, Title, Anchor, Group, Card } from '@mantine/core';
+import { Timeline, Text, Title, Anchor, Group } from '@mantine/core';
 import {
     IconFileSymlink,
     IconCopy,
@@ -9,6 +9,7 @@ import {
     IconPlayCard,
     IconFlag,
 } from '@tabler/icons';
+
 const InHouseReview = ({ IHR }: { IHR: string | null }) => {
     if (IHR === '1') {
         return (
@@ -17,9 +18,8 @@ const InHouseReview = ({ IHR }: { IHR: string | null }) => {
                 <p> An in-house review process is required</p>
             </div>
         );
-    } else {
-        return <div></div>;
     }
+    return <div></div>;
 };
 const OTCReview = ({ OTC, Plans }: { OTC: string | null; Plans: string | null }) => {
     if (OTC === '1' && Plans === '1') {
@@ -29,26 +29,18 @@ const OTCReview = ({ OTC, Plans }: { OTC: string | null; Plans: string | null })
                 <Title order={2}> Plans are required</Title>
             </div>
         );
-    } else if (OTC === '1' && Plans === '0') {
+    }
+    if (OTC === '1' && Plans === '0') {
         return (
             <div>
                 <Title order={2}> Over The Counter Review is required</Title>
             </div>
         );
-    } else {
-        return <div></div>;
     }
+    return <div></div>;
 };
 
-const PermitRequirements = ({
-    IHR,
-    OTC,
-    Plans,
-}: {
-    IHR: string | null;
-    OTC: string | null;
-    Plans: string | null;
-}) => {
+const PermitRequirements = ({ IHR, OTC, Plans }: { IHR: string | null; OTC: string | null; Plans: string | null }) => {
     if (OTC === '1') {
         return (
             <Group align="center" position="center">
@@ -98,7 +90,8 @@ const PermitRequirements = ({
                 </Timeline>
             </Group>
         );
-    } else if (IHR === '1') {
+    }
+    if (IHR === '1') {
         return (
             <Group align="center" position="center">
                 <Timeline active={5} bulletSize={30} lineWidth={2}>
@@ -139,17 +132,16 @@ const PermitRequirements = ({
                 </Timeline>
             </Group>
         );
-    } else {
-        return (
-            <Group align="center" position="center">
-                <div>
-                    <Title order={2}>
-                        <IconFlag /> Nothing is required! You’re set to build.
-                    </Title>
-                </div>
-            </Group>
-        );
     }
+    return (
+        <Group align="center" position="center">
+            <div>
+                <Title order={2}>
+                    <IconFlag /> Nothing is required! You’re set to build.
+                </Title>
+            </div>
+        </Group>
+    );
 };
 
 export { InHouseReview, OTCReview, PermitRequirements };

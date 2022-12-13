@@ -1,7 +1,6 @@
 import { Group } from '@mantine/core';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import ReUseableCard from './Card';
+
 const Exterior = () => {
     const outdoorConstructionTypes = [
         {
@@ -46,7 +45,6 @@ const Exterior = () => {
             />
         );
     });
-    const navigate = useNavigate();
     return (
         <Group align="center" position="center">
             {Cards}

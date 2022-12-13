@@ -10,14 +10,12 @@ import {
     Title,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { FormEvent, useState } from 'react';
-import { useMemo } from 'react';
+import { FormEvent, useState, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
-import { InHouseReview, OTCReview, PermitRequirements } from './Requirements';
 import axios from 'axios';
+import { InHouseReview, OTCReview, PermitRequirements } from './Requirements';
 
 function Construction() {
-    const [displayTimeline, setTimeline] = useState(false);
     const [visible, setVisible] = useState(false);
     const form = useForm({
         initialValues: { name: '', email: '', budget: 0, wetZap: '' },
@@ -34,7 +32,7 @@ function Construction() {
         return useMemo(() => new URLSearchParams(search), [search]);
     }
 
-    let query = useQuery();
+    const query = useQuery();
     const IHR = query.get('IHR');
     const OTC = query.get('OTC');
     const plans = query.get('plans');
@@ -58,7 +56,7 @@ function Construction() {
             },
         });
         console.log(response);
-        setVisible(false);
+        // setVisible(false);
     };
 
     const DisplayElectricalForm = () => {
@@ -75,7 +73,8 @@ function Construction() {
                     </Anchor>
                 </>
             );
-        } else if (form.values.wetZap === 'Pluming') {
+        }
+        if (form.values.wetZap === 'Pluming') {
             return (
                 <>
                     <Title order={2}> This Form is Required</Title>
@@ -85,7 +84,8 @@ function Construction() {
                     </Anchor>
                 </>
             );
-        } else if (form.values.wetZap === 'ENP') {
+        }
+        if (form.values.wetZap === 'ENP') {
             return (
                 <div>
                     <Title order={2}> These Forms are Required</Title>
@@ -101,9 +101,8 @@ function Construction() {
                     </Anchor>
                 </div>
             );
-        } else {
-            return <div></div>;
         }
+        return <div></div>;
     };
 
     return (
@@ -116,12 +115,8 @@ function Construction() {
                         <Group position="apart" mt="md" mb="xs">
                             <DisplayElectricalForm />
                         </Group>
-                        {!!visible ? (
-                            <PermitRequirements
-                                OTC={OTC}
-                                Plans={plans}
-                                IHR={IHR}
-                            />
+                        {visible ? (
+                            <PermitRequirements OTC={OTC} Plans={plans} IHR={IHR} />
                         ) : (
                             <>
                                 <LoadingOverlay visible={visible} overlayBlur={2} />

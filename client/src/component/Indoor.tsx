@@ -1,7 +1,6 @@
-import { Card, Group, Text, Button, Image } from '@mantine/core';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { Group } from '@mantine/core';
 import ReUseableCard from './Card';
+
 const Indoor = () => {
     const indoorConstructionTypes = [
         {
@@ -40,7 +39,6 @@ const Indoor = () => {
             />
         );
     });
-    const navigate = useNavigate();
     return (
         <Group align="center" position="center">
             {Cards}
